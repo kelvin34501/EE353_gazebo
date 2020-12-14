@@ -18,7 +18,7 @@ class RobotDrive : public ModelPlugin {
     public:
     virtual void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf) {
         // Just output a message for now
-        std::cerr << "\nThe velodyne plugin is attach to model[" << _model->GetName() << "]\n";
+        std::cerr << "\nThe robot_drive plugin is attach to model[" << _model->GetName() << "]\n";
 
         // safety check
         if (_model->GetJointCount() == 0) {
@@ -44,11 +44,7 @@ class RobotDrive : public ModelPlugin {
 
         // Create the node
         this->node = transport::NodePtr(new transport::Node());
-#if GAZEBO_MAJOR_VERSION < 8
-        this->node->Init(this->model->GetWorld()->GetName());
-#else
         this->node->Init(this->model->GetWorld()->Name());
-#endif
 
         // Create a topic name
         std::string topicName = "~/" + this->model->GetName() + "/vel_cmd";

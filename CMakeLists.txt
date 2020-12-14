@@ -9,6 +9,10 @@ include_directories(${GAZEBO_INCLUDE_DIRS})
 link_directories(${GAZEBO_LIBRARY_DIRS})
 list(APPEND CMAKE_CXX_FLAGS "${GAZEBO_CXX_FLAGS}")
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 add_library(hello_world SHARED example/hello_world.cpp)
 target_link_libraries(hello_world ${GAZEBO_LIBRARIES})
 
@@ -38,4 +42,8 @@ target_link_libraries(velodyne_plugin ${GAZEBO_LIBRARIES})
 ## velodyne velocity publisher
 add_executable(velodyne_plugin_vel example/velodyne_plugin/velodyne_plugin_vel.cpp)
 target_link_libraries(velodyne_plugin_vel ${GAZEBO_LIBRARIES})
+
+# the project file
+add_library(project_world_init SHARED src/world_init.cpp)
+target_link_libraries(project_world_init ${GAZEBO_LIBRARIES})
 
