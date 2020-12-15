@@ -77,21 +77,24 @@ class RobotDrive : public ModelPlugin {
         this->model->GetJointController()->SetVelocityPID(this->joint_mapping[Wheel::RearRight]->GetScopedName(),
                                                           this->pid_mapping[Wheel::RearRight]);
 
-        this->model->GetJointController()->SetVelocityTarget(this->joint_mapping[Wheel::FrontLeft]->GetScopedName(), 0);
-        this->model->GetJointController()->SetVelocityTarget(this->joint_mapping[Wheel::RearLeft]->GetScopedName(), 0);
+        this->model->GetJointController()->SetVelocityTarget(this->joint_mapping[Wheel::FrontLeft]->GetScopedName(),
+                                                             velocity);
+        this->model->GetJointController()->SetVelocityTarget(this->joint_mapping[Wheel::RearLeft]->GetScopedName(),
+                                                             velocity);
         this->model->GetJointController()->SetVelocityTarget(this->joint_mapping[Wheel::FrontRight]->GetScopedName(),
-                                                             0);
-        this->model->GetJointController()->SetVelocityTarget(this->joint_mapping[Wheel::RearRight]->GetScopedName(), 0);
+                                                             velocity);
+        this->model->GetJointController()->SetVelocityTarget(this->joint_mapping[Wheel::RearRight]->GetScopedName(),
+                                                             velocity);
 
-        // Create the node
-        this->node = transport::NodePtr(new transport::Node());
-        this->node->Init(this->model->GetWorld()->Name());
+        // // Create the node
+        // this->node = transport::NodePtr(new transport::Node());
+        // this->node->Init(this->model->GetWorld()->Name());
 
-        // Create a topic name
-        std::string topicName = "~/" + this->model->GetName() + "/vel_cmd";
+        // // Create a topic name
+        // std::string topicName = "~/" + this->model->GetName() + "/vel_cmd";
 
-        // Subscribe to the topic, and register a callback
-        this->sub = this->node->Subscribe(topicName, &RobotDrive::OnMsg, this);
+        // // Subscribe to the topic, and register a callback
+        // this->sub = this->node->Subscribe(topicName, &RobotDrive::OnMsg, this);
     }
 
     /// \brief Handle incoming message

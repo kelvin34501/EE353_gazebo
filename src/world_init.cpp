@@ -100,7 +100,6 @@ class WorldInit : public WorldPlugin {
             robot_sdf.SetFromString(sdf_ss.str());
 
             _parent->InsertModelSDF(robot_sdf);
-
             std::cout << "<<<<<<\n";
             // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         }
