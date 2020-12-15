@@ -47,3 +47,5 @@ target_link_libraries(velodyne_plugin_vel ${GAZEBO_LIBRARIES})
 add_library(project_world_init SHARED src/world_init.cpp)
 target_link_libraries(project_world_init ${GAZEBO_LIBRARIES})
 
+add_library(project_robot_drive SHARED src/robot_drive.cpp)
+target_link_libraries(project_robot_drive ${GAZEBO_LIBRARIES})
